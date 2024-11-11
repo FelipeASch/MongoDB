@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
-const User = require('./models/User'); // Modelo do usuário
-const Product = require('./models/Product'); // Modelo do produto
-const Transaction = require('./models/Transaction'); // Modelo de transação
+const User = require('./models/User'); 
+const Product = require('./models/Product'); 
+const Transaction = require('./models/Transaction'); 
 
 async function comprarProduto(userId, productId, quantidade) {
   try {
     await mongoose.connect('mongodb://localhost:27017/somativa', {
     });
 
-    // Encontrando o usuário
+   
     const usuario = await User.findById(userId);
     if (!usuario) {
       console.log('Usuário não encontrado.');
@@ -28,19 +28,19 @@ async function comprarProduto(userId, productId, quantidade) {
       return;
     }
 
-    // Criando a transação
+  
     const transacao = new Transaction({
       user: usuario._id,
       product: produto._id,
       quantity: quantidade,
-      price: produto.price*quantidade,
+      price: (produto.price*quantidade-produto.price*(produto.discount/100)*quantidade)-usuario.points,
       date: new Date()
     });
 
-    // Salvando a transação
+    
     await transacao.save();
 
-    // Atualizando o estoque do produto
+    
     produto.quantityAvailable -= quantidade;
     await produto.save();
 
@@ -48,7 +48,7 @@ async function comprarProduto(userId, productId, quantidade) {
     console.log(`Compra realizada com sucesso!`);
     console.log(`Produto: ${produto.name}`);
     console.log(`Quantidade comprada: ${quantidade}`);
-    console.log(`Preço total: ${produto.price*quantidade-usuario.points}`)
+    console.log(`Preço total: ${(produto.price*quantidade-produto.price*(produto.discount/100)*quantidade)-usuario.points}`)
     console.log(`Novo estoque: ${produto.quantityAvailable}`);
 
     usuario.points = 0
@@ -63,5 +63,5 @@ async function comprarProduto(userId, productId, quantidade) {
   }
 }
 
-// Exemplo de chamada para a função de compra (substitua com valores reais de usuário e produto)
-comprarProduto('67325f410521878e147c6c9e', '67325f410521878e147c6cab', 2); // Exemplo: Compra 2 unidades
+// usuario, produto, quantidade
+comprarProduto('673264bb1d6caa2ba8b18e95', '673264bb1d6caa2ba8b18ea1', 2); 

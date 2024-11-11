@@ -1,31 +1,35 @@
-const axios = require('axios');
+const mongoose = require('mongoose');
+const Product = require('./models/Product'); // Certifique-se de que o caminho está correto para o modelo de Produto
 
-async function applyDiscount(productId,discount) {
-    const url = `http://localhost:5000/api/products/${productId}/promotion`;
-
-    const discountData = {
-        discount: discount, 
-        promotionEndDate: '2024-12-31' 
-    };
-
+// Função para aplicar promoção a um produto
+async function applyDiscount(productId, discount) {
     try {
-        const response = await axios.put(url, discountData, {
-            headers: { 'Content-Type': 'application/json' }
+        // Conecta ao MongoDB
+        await mongoose.connect('mongodb://localhost:27017/somativa', {
         });
-        console.log('Promoção aplicada com sucesso:', response.data);
-    } catch (error) {
-       
-        if (error.response) {
-            
-            console.error('Erro de resposta:', error.response.status, error.response.data);
-        } else if (error.request) {
-          
-            console.error('Erro de requisição:', error.request);
+
+        // Atualiza o desconto do produto
+        const result = await Product.findByIdAndUpdate(
+            productId,
+            {
+                discount: discount,
+                promotionEndDate: new Date('2024-12-31') // Data de término da promoção
+            },
+            { new: true } // Retorna o documento atualizado
+        );
+
+        if (result) {
+            console.log('Promoção aplicada com sucesso:', result);
         } else {
-           
-            console.error('Erro:', error.message);
+            console.log('Produto não encontrado.');
         }
+    } catch (error) {
+        console.error('Erro ao aplicar a promoção:', error.message);
+    } finally {
+        // Fecha a conexão com o banco de dados
+        mongoose.connection.close();
     }
 }
 
-applyDiscount('67325f410521878e147c6cab',20);
+// Exemplo de uso da função
+applyDiscount('673264bb1d6caa2ba8b18ea1', 20);
