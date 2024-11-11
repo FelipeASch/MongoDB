@@ -3,7 +3,7 @@ const Product = require('../models/Product');
 const Category = require('../models/Category');
 
 async function encontrarProdutosPorCategoria(categoryName) {
-    console.log(categoryName)
+
     try {
         const category = await Category.findOne({ name: categoryName });
         if (!category) {

@@ -64,4 +64,4 @@ async function comprarProduto(userId, productId, quantidade) {
 }
 
 // usuario, produto, quantidade
-comprarProduto('673264bb1d6caa2ba8b18e95', '673264bb1d6caa2ba8b18ea1', 2); 
+comprarProduto('673264bb1d6caa2ba8b18e97', '673264bb1d6caa2ba8b18ea2', 1); 

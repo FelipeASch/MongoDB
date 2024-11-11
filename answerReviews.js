@@ -29,4 +29,4 @@ async function respondToReview(reviewId, answer) {
 
 
 
-respondToReview("673264bb1d6caa2ba8b18ead","Obrigado pelo feedback!");
+respondToReview("673264bb1d6caa2ba8b18eaf","Obrigado pelo feedback paizao!");

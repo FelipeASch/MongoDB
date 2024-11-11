@@ -1,11 +1,9 @@
-// routes/productRoutes.js
 
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
 const Category = require('../models/Category');
 
-// Rota para buscar produtos por categoria
 router.get('/category/:categoryName', async (req, res) => {
     const { categoryName } = req.params;
     try {
@@ -20,7 +18,6 @@ router.get('/category/:categoryName', async (req, res) => {
     }
 });
 
-// Rota para adicionar um novo produto
 router.post('/add', async (req, res) => {
     const { name, description, price, quantityAvailable, categoryName, subcategory } = req.body;
 
@@ -45,7 +42,6 @@ router.post('/add', async (req, res) => {
     }
 });
 
-// Rota para aplicar ou atualizar uma promoção em um produto
 router.put('/:productId/promotion', async (req, res) => {
     const { discount, promotionEndDate } = req.body;
     try {

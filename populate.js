@@ -34,11 +34,11 @@ async function populateDatabase() {
         ];
 
         const productsData = [
-            { name: "Smartphone", description: "Celular com 128GB", price: 1500.00, quantityAvailable: 20, category: "Eletrônicos", subcategory: "Smartphones" },
-            { name: "Laptop", description: "Laptop para trabalho", price: 3000.00, quantityAvailable: 15, category: "Eletrônicos", subcategory: "Laptops" },
-            { name: "Camisa", description: "Camisa masculina", price: 50.00, quantityAvailable: 50, category: "Vestuário", subcategory: "Roupas Masculinas" },
-            { name: "Cereal", description: "Cereal integral", price: 10.00, quantityAvailable: 100, category: "Alimentos", subcategory: "Cereais" },
-            { name: "Livro de Ficção", description: "Livro emocionante", price: 25.00, quantityAvailable: 30, category: "Livros", subcategory: "Ficção" },
+            { name: "Smartphone", description: "Celular com 128GB", price: 1500.00, quantityAvailable: 200, category: "Eletrônicos", subcategory: "Smartphones" },
+            { name: "Laptop", description: "Laptop para trabalho", price: 3000.00, quantityAvailable: 150, category: "Eletrônicos", subcategory: "Laptops" },
+            { name: "Camisa", description: "Camisa masculina", price: 50.00, quantityAvailable: 500, category: "Vestuário", subcategory: "Roupas Masculinas" },
+            { name: "Cereal", description: "Cereal integral", price: 10.00, quantityAvailable: 1000, category: "Alimentos", subcategory: "Cereais" },
+            { name: "Livro de Ficção", description: "Livro emocionante", price: 25.00, quantityAvailable: 300, category: "Livros", subcategory: "Ficção" },
         ];
 
         const users = await User.insertMany(usersData);
@@ -68,7 +68,7 @@ async function populateDatabase() {
             user: transaction.user,
             product: transaction.product,
             rating: Math.floor(Math.random() * 5) + 1,
-            comment: `Ótimo produto ${index + 1}`
+            comment: `Ótimo produto ${index + 1}`,
         }));
 
         await Review.insertMany(reviewsData);

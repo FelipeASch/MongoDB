@@ -1,21 +1,20 @@
 const mongoose = require('mongoose');
-const Product = require('./models/Product'); // Certifique-se de que o caminho está correto para o modelo de Produto
+const Product = require('./models/Product'); 
 
-// Função para aplicar promoção a um produto
 async function applyDiscount(productId, discount) {
     try {
-        // Conecta ao MongoDB
+        
         await mongoose.connect('mongodb://localhost:27017/somativa', {
         });
 
-        // Atualiza o desconto do produto
+      
         const result = await Product.findByIdAndUpdate(
             productId,
             {
                 discount: discount,
-                promotionEndDate: new Date('2024-12-31') // Data de término da promoção
+                promotionEndDate: new Date('2024-12-31') 
             },
-            { new: true } // Retorna o documento atualizado
+            { new: true } 
         );
 
         if (result) {
@@ -26,10 +25,9 @@ async function applyDiscount(productId, discount) {
     } catch (error) {
         console.error('Erro ao aplicar a promoção:', error.message);
     } finally {
-        // Fecha a conexão com o banco de dados
+
         mongoose.connection.close();
     }
 }
 
-// Exemplo de uso da função
-applyDiscount('673264bb1d6caa2ba8b18ea1', 20);
+applyDiscount('673264bb1d6caa2ba8b18ea2', 20);

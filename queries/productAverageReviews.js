@@ -1,4 +1,3 @@
-// reviewAggregations.js
 
 const Review = require('../models/Review');
 
