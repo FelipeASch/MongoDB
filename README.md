@@ -38,6 +38,11 @@ Para realizar as consultas pré-estabelecidas na pasta "queries", rode o seguint
 
 **node runQueries.js**
 
+* **Aplicar descontos**
+Para aplicar descontos vá ao arquivo applyDescount.js e coloque o id de um produto válido junto de um valor de desconto desejado, após isso rode:
+
+**node applyDescount.js**
+
 * **Visualizar Dados no MongoDB Compass**
 Após iniciar o banco de dados e popular com os dados, você pode visualizar o banco de dados no MongoDB Compass.
 
