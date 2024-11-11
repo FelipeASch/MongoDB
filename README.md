@@ -33,6 +33,11 @@ Para popular o banco de dados com dados de exemplo (5 usuários, 5 produtos, 5 c
 
 **node populate.js**
 
+* **Realizar Consultas**
+Para realizar as consultas pré-estabelecidas na pasta "queries", rode o seguinte comando:
+
+**node runQueries.js**
+
 * **Visualizar Dados no MongoDB Compass**
 Após iniciar o banco de dados e popular com os dados, você pode visualizar o banco de dados no MongoDB Compass.
 
