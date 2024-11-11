@@ -4,9 +4,9 @@ const User = require('../models/User');
 
 router.post('/add', async (req, res) => {
     try {
-        const { name, email, password, address } = req.body;
+        const { name, email, password, address, points } = req.body;
         
-        const user = new User({ name, email, password, address });
+        const user = new User({ name, email, password, address, points });
         await user.save();
 
         res.status(201).json({ message: 'Usuário criado com sucesso!', user });
@@ -34,10 +34,10 @@ router.get('/:id', async (req, res) => {
 });
 router.put('/:id', async (req, res) => {
     try {
-        const { name, email, password, address } = req.body;
+        const { name, email, password, address, points } = req.body;
         const user = await User.findByIdAndUpdate(
             req.params.id,
-            { name, email, password, address },
+            { name, email, password, address, points },
             { new: true, runValidators: true }
         );
 
